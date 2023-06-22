@@ -3,14 +3,6 @@ pipeline {
     docker { image 'node:16-alpine' }
   }
   stages {
-     stage('Build') {
-       steps {
-         sh 'mvn clean package'
-      }
-    }
-  }
-}
-
     stage('Test') {
       steps {
         sh 'node --version'
@@ -18,3 +10,12 @@ pipeline {
     }
   }
 }
+     stage('build') {
+       steps {
+         sh 'mvn clean package'
+       }
+     }
+   }
+}
+
+
