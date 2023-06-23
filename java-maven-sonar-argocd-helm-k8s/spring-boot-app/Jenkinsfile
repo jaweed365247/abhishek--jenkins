@@ -11,8 +11,8 @@ pipeline {
         stage('Build'){
             steps {
                 sh '''cd java-maven-sonar-argocd-helm-k8s
-cd spring-boot-app'''
-                sh 'mvn clean package'
+cd spring-boot-app && mvn clean package
+'''
             }
         }
     }
