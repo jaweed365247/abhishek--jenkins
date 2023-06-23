@@ -1,0 +1,19 @@
+pipeline {
+    agent {
+        docker { image 'abhishekf5/maven-abhishek-docker-agent:v1' } 
+    }
+        stages {
+            stage('Checkout'){
+                steps {
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'docker-cred', url: 'https://github.com/jaweed365247/abhishek--jenkins.git']])
+            }
+        }
+        stage('Build'){
+            steps {
+                sh '''cd java-maven-sonar-argocd-helm-k8s
+cd spring-boot-app'''
+                sh 'mvn clean package'
+            }
+        }
+    }
+}
